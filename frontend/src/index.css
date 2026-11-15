@@ -534,3 +534,34 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; }
   border-color: var(--violet);
 }
 .save-message { margin-left: 12px; font-size: 14px; color: var(--success-text); }
+
+.hero {
+  padding: 32px;
+  margin: 28px 0 8px;
+  background: var(--tint);
+  border-radius: 16px;
+}
+.hero h2 { margin: 0 0 8px; font-size: 32px; }
+.hero p { margin: 0 0 20px; color: var(--muted-2); }
+.hero .eyebrow { margin: 0 0 8px; color: var(--purple); }
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin: 36px 0 16px;
+}
+.section-head h2 { margin: 0; font-size: 24px; }
+.text-link {
+  color: var(--purple);
+  font-size: 14px;
+  text-decoration: none;
+}
+.text-link:hover { text-decoration: underline; }
