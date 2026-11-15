@@ -386,3 +386,51 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; }
 .look-note { margin: 0 0 4px; font-size: 13px; color: var(--success-text); }
 .look-cost { margin: 0 0 16px; font-size: 13px; color: var(--muted-2); }
 .look-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0 32px;
+}
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.filter select {
+  height: 48px;
+  min-width: 180px;
+  padding: 0 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text);
+}
+.filter select:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+
+.product-img {
+  position: relative;
+  padding: 12px;
+  text-align: center;
+}
+.missing-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  background: var(--gradient);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.product-price { margin: 4px 0 0; font-size: 15px; font-weight: 600; }
