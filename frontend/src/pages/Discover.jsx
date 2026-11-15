@@ -44,6 +44,21 @@ export default function Discover() {
   const [price, setPrice] = useState('All');
   const [location, setLocation] = useState('All');
   const [needed] = useState(getNeededKeys);
+    const [added, setAdded] = useState([]);
+
+  function addToWardrobe(p) {
+    const wardrobe = loadJson('wardrobe', initialItems);
+    const next = [
+      ...wardrobe,
+      { id: Date.now(), name: p.name, category: p.category, color: p.color },
+    ];
+    try {
+      localStorage.setItem('wardrobe', JSON.stringify(next));
+    } catch {
+      /* storage unavailable, ignore */
+    }
+    setAdded([...added, p.id]);
+  }
 
   const shown = products
     .filter((p) => category === 'All' || p.category === category)
@@ -103,6 +118,13 @@ export default function Discover() {
             <h3 className="card-title">{p.name}</h3>
             <p className="card-meta">{p.shop} · {p.location}</p>
             <p className="product-price">GH₵{p.price}</p>
+                        <button
+              className="link-btn"
+              disabled={added.includes(p.id)}
+              onClick={() => addToWardrobe(p)}
+            >
+              {added.includes(p.id) ? 'Added to wardrobe ✓' : '+ Add to my wardrobe'}
+            </button>
           </div>
         ))}
       </div>

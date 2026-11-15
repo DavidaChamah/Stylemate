@@ -434,3 +434,20 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; }
   font-weight: 600;
 }
 .product-price { margin: 4px 0 0; font-size: 15px; font-weight: 600; }
+
+.empty-state {
+  max-width: 420px;
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--panel);
+  border-radius: 16px;
+}
+.empty-state h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
+}
+.empty-state p { margin: 0 0 20px; font-size: 14px; color: var(--muted-2); }
+
+.link-btn:disabled { color: var(--success-text); cursor: default; }
