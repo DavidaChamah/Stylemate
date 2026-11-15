@@ -740,3 +740,29 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; }
 .add-btn { width: 100%; margin-top: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 500; cursor: pointer; }
 .add-btn:hover:not(:disabled) { background: var(--tint); }
 .add-btn:disabled { color: var(--success-text); background: var(--success-bg); border-color: transparent; cursor: default; }
+
+.hero-split { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.hero-text { flex: 1 1 320px; }
+.hero-cards { display: flex; gap: 16px; align-items: flex-end; }
+.spin-card { width: 128px; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 4px 14px rgba(36, 33, 43, 0.08); }
+.spin-card.is-mid { width: 144px; }
+.spin-card img { width: 100%; aspect-ratio: 120 / 140; object-fit: cover; border-radius: 8px; display: block; }
+.spin-card span { display: block; margin: 6px 2px 0; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple); }
+.spin-card strong { display: block; margin: 2px 2px 4px; font-size: 12px; font-weight: 500; color: var(--text); }
+
+.event-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+.event-tile { display: flex; flex-direction: column; background: var(--panel); border-radius: 12px; overflow: hidden; text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500; }
+.event-tile img { width: 100%; aspect-ratio: 224 / 112; object-fit: contain; background: #f6f1f8; display: block; }
+.event-tile span { padding: 12px 14px; }
+.event-tile:hover { outline: 1px solid var(--purple); }
+
+.look-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center top; display: block; }
+
+@media (max-width: 760px) {
+  .event-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-cards { display: none; }
+}
+
+.looks .look { display: flex; flex-direction: row; align-items: stretch; gap: 16px; padding: 12px; }
+.looks .look-photo { flex: 0 0 96px; width: 96px; height: auto; min-height: 150px; aspect-ratio: auto; object-fit: cover; object-position: center top; border-radius: 12px; }
+.looks .look-body { display: flex; flex-direction: column; justify-content: center; gap: 4px; }

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { initialItems } from '../data/wardrobe';
-import { outfitLibrary } from '../data/style';
+import { outfitLibrary, events } from '../data/style';
 import { initialPlan } from '../data/planner';
+import { lookFor } from '../data/lookPhotos';
+import curlsPhoto from '../assets/beauty/curls.jpg';
 
 function loadJson(key, fallback) {
   try {
@@ -45,11 +47,46 @@ export default function Overview() {
       <h1>{firstName ? `Welcome back, ${firstName}.` : 'We make beauty and elegance simple.'}</h1>
       <p className="subtitle">Let's find something perfect for your next occasion.</p>
 
-      <div className="hero">
-        <p className="eyebrow">THE STYLE SPIN</p>
-        <h2>A little inspiration. A whole new you.</h2>
-        <p>Outfits made from the pieces you already own, with the gaps filled in.</p>
-        <Link className="btn-primary btn-link" to="/style-me">Style me</Link>
+      <div className="hero hero-split">
+        <div className="hero-text">
+          <p className="eyebrow">THE STYLE SPIN</p>
+          <h2>A little inspiration. A whole new you.</h2>
+          <p>Outfits made from the pieces you already own, with the gaps filled in.</p>
+          <Link className="btn-primary btn-link" to="/style-me">Style me</Link>
+        </div>
+        <div className="hero-cards">
+          <div className="spin-card">
+            <img src={lookFor('kente')} alt="" />
+            <span>Outfit</span>
+            <strong>Kente occasionwear</strong>
+          </div>
+          <div className="spin-card is-mid">
+            <img src={curlsPhoto} alt="" />
+            <span>Hairstyle</span>
+            <strong>Natural curls</strong>
+          </div>
+          <div className="spin-card">
+            <img src={lookFor('modern')} alt="" />
+            <span>Outfit</span>
+            <strong>Modern tailoring</strong>
+          </div>
+        </div>
+      </div>
+
+      <div className="section-head">
+        <h2>What are you dressing for?</h2>
+        <Link className="text-link" to="/style-me">Choose an occasion to find your look →</Link>
+      </div>
+      <div className="event-grid">
+        {events.map((e) => {
+          const photo = lookFor(e);
+          return (
+            <Link className="event-tile" to="/style-me" key={e}>
+              {photo && <img src={photo} alt="" />}
+              <span>{e}</span>
+            </Link>
+          );
+        })}
       </div>
 
       <div className="section-head">
@@ -69,19 +106,26 @@ export default function Overview() {
         <Link className="text-link" to="/style-me">Style something new →</Link>
       </div>
       <div className="looks">
-        {picks.map((look) => (
-          <div className="look" key={look.id}>
-            <div className="look-img">{look.name}</div>
-            <div className="look-body">
-              <h3>{look.name}</h3>
-              <p className="look-tagline">{look.tagline}</p>
-              <p className="look-cost">
-                You have {look.have} of {look.items.length} pieces
-              </p>
-              <Link className="text-link" to="/style-me">See look →</Link>
+        {picks.map((look) => {
+          const photo = lookFor(look.name);
+          return (
+            <div className="look" key={look.id}>
+              {photo ? (
+                <img className="look-photo" src={photo} alt={look.name} />
+              ) : (
+                <div className="look-img">{look.name}</div>
+              )}
+              <div className="look-body">
+                <h3>{look.name}</h3>
+                <p className="look-tagline">{look.tagline}</p>
+                <p className="look-cost">
+                  You have {look.have} of {look.items.length} pieces
+                </p>
+                <Link className="text-link" to="/style-me">See look →</Link>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="section-head">
