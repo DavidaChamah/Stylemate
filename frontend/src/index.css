@@ -293,3 +293,96 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; }
 }
 .day-empty span { font-size: 20px; color: var(--purple); }
 .day-empty:hover { background: var(--panel); }
+
+.btn-primary:disabled {
+  background: var(--panel);
+  color: var(--muted-2);
+  cursor: not-allowed;
+}
+.btn-primary:disabled:hover { opacity: 1; }
+
+.stepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin: 28px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--muted);
+}
+.step.active { color: var(--purple); font-weight: 600; }
+.step.done { color: var(--text); }
+
+.section-title { margin: 0 0 20px; font-size: 24px; }
+
+.option-group { margin-bottom: 24px; }
+.group-label {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.choices { display: flex; flex-wrap: wrap; gap: 10px; }
+.choice {
+  height: 48px;
+  padding: 0 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+.choice:hover { background: var(--panel); }
+.choice.active {
+  background: var(--tint);
+  border-color: var(--violet);
+  color: var(--purple);
+}
+
+.step-actions { display: flex; gap: 12px; margin-top: 28px; }
+
+.looks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.look {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+}
+.look-img {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 14px;
+}
+.look-body { padding: 20px; }
+.look-body h3 { margin: 0 0 6px; font-size: 22px; }
+.look-tagline { margin: 0 0 16px; font-size: 14px; color: var(--muted-2); }
+
+.look-items { margin: 0 0 16px; padding: 0; list-style: none; }
+.look-items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.tag { font-size: 12px; font-style: normal; }
+.tag.owned { color: var(--success-text); }
+.tag.missing { color: #ce3287; }
+
+.look-note { margin: 0 0 4px; font-size: 13px; color: var(--success-text); }
+.look-cost { margin: 0 0 16px; font-size: 13px; color: var(--muted-2); }
+.look-actions { display: flex; flex-wrap: wrap; gap: 10px; }
