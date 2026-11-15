@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { events, options, outfitLibrary } from '../data/style';
 import { initialItems } from '../data/wardrobe';
+import { lookFor } from '../data/lookPhotos';
 
 const STEPS = ['Occasion', 'Preferences', 'Your looks'];
 const BUDGET_MAX = {
@@ -97,15 +98,16 @@ export default function StyleMe() {
       {step === 1 && (
         <section>
           <h2 className="section-title">01 Select an event</h2>
-          <div className="choices">
+                    <div className="choices choices-events">
             {events.map((e) => (
               <button
                 key={e}
                 type="button"
-                className={event === e ? 'choice active' : 'choice'}
+                className={event === e ? 'choice event-choice active' : 'choice event-choice'}
                 onClick={() => setEvent(e)}
               >
-                {e}
+                {lookFor(e) && <img src={lookFor(e)} alt="" />}
+                <span>{e}</span>
               </button>
             ))}
           </div>
@@ -156,7 +158,13 @@ export default function StyleMe() {
               const over = look.cost > maxBudget;
               return (
                 <div className="look" key={look.id}>
-                  <div className="look-img">{look.name}</div>
+                                    {(lookFor(look.name) || lookFor(event)) && (
+                    <img
+                      className="look-photo-lg"
+                      src={lookFor(look.name) || lookFor(event)}
+                      alt={look.name}
+                    />
+                  )}
                   <div className="look-body">
                     <h3>{look.name}</h3>
                     <p className="look-tagline">{look.tagline}</p>
