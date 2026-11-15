@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { products, shopFilters } from '../data/shops';
 import { outfitLibrary } from '../data/style';
 import { initialItems } from '../data/wardrobe';
+import { photoFor, localEditPhoto } from '../data/clothingPhotos';
 
 function loadJson(key, fallback) {
   try {
@@ -44,7 +44,7 @@ export default function Discover() {
   const [price, setPrice] = useState('All');
   const [location, setLocation] = useState('All');
   const [needed] = useState(getNeededKeys);
-    const [added, setAdded] = useState([]);
+  const [added, setAdded] = useState([]);
 
   function addToWardrobe(p) {
     const wardrobe = loadJson('wardrobe', initialItems);
@@ -74,6 +74,19 @@ export default function Discover() {
       <p className="subtitle">
         Discover considered additions from independent Ghanaian boutiques.
       </p>
+
+      <div className="local-edit">
+        <div className="local-edit-text">
+          <p className="eyebrow">THE LOCAL EDIT</p>
+          <h2>
+            Close to home.
+            <br />
+            True to your style.
+          </h2>
+          <p>Discover independent style, right here in Accra.</p>
+        </div>
+        <img className="local-edit-photo" src={localEditPhoto} alt="" />
+      </div>
 
       <div className="filters">
         <label className="filter">
@@ -109,24 +122,39 @@ export default function Discover() {
       )}
 
       <div className="grid">
-        {shown.map((p) => (
-          <div className="card" key={p.id}>
-            <div className="card-img product-img">
-              {p.missing && <span className="missing-badge">Your missing piece</span>}
-              {p.name}
+        {shown.map((p) => {
+          const photo = photoFor(p.name);
+          return (
+            <div className="card" key={p.id}>
+              {photo ? (
+                <div className="product-photo-wrap">
+                  <img className="product-photo" src={photo} alt={p.name} />
+                  {p.missing && <span className="missing-badge">Your missing piece</span>}
+                </div>
+              ) : (
+                <div className="card-img product-img">
+                  {p.missing && <span className="missing-badge">Your missing piece</span>}
+                  {p.name}
+                </div>
+              )}
+                            <div className="product-head">
+                <h3 className="card-title">{p.name}</h3>
+                <span className="product-price">GH₵{p.price}</span>
+              </div>
+              <p className="card-meta">{p.shop}</p>
+                            <p className="card-meta card-loc">
+                {p.area ? `${p.area}, ${p.location}` : p.location}
+              </p>
+              <button
+                className="add-btn"
+                disabled={added.includes(p.id)}
+                onClick={() => addToWardrobe(p)}
+              >
+                {added.includes(p.id) ? 'Added to wardrobe ✓' : '+ Add to my wardrobe'}
+              </button>
             </div>
-            <h3 className="card-title">{p.name}</h3>
-            <p className="card-meta">{p.shop} · {p.location}</p>
-            <p className="product-price">GH₵{p.price}</p>
-                        <button
-              className="link-btn"
-              disabled={added.includes(p.id)}
-              onClick={() => addToWardrobe(p)}
-            >
-              {added.includes(p.id) ? 'Added to wardrobe ✓' : '+ Add to my wardrobe'}
-            </button>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
