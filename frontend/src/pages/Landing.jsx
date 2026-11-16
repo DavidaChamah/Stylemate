@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { lookFor } from '../data/lookPhotos';
 
 const features = [
   {
@@ -33,20 +34,32 @@ export default function Landing() {
         <Link className="btn-primary btn-link" to="/overview">Get started</Link>
       </header>
 
-      <section className="landing-hero">
-        <p className="eyebrow">YOUR PERSONAL STYLIST</p>
-        <h1>
-          Your Style.<br />
-          Your Occasion.<br />
-          Your Rules.
-        </h1>
-        <p className="subtitle">
-          Never wonder what to wear again. StyleMate turns the clothes you already own
-          into outfits for every occasion, and finds the missing piece.
-        </p>
-        <div className="hero-actions">
-          <Link className="btn-primary btn-link" to="/style-me">Style me</Link>
-          <Link className="tab btn-link" to="/wardrobe">Open my wardrobe</Link>
+           <section className="landing-hero landing-hero-split">
+        <div className="landing-hero-text">
+          <p className="eyebrow">YOUR WARDROBE. REIMAGINED.</p>
+          <h1>
+            Your Style.<br />
+            Your Occasion.<br />
+            Your Rules.
+          </h1>
+          <p className="subtitle">
+            Never wonder what to wear again. StyleMate turns the clothes you already own
+            into outfits for every occasion, and finds the missing piece.
+          </p>
+          <div className="hero-actions">
+            <Link className="btn-primary btn-link" to="/style-me">Style me</Link>
+            <Link className="tab btn-link" to="/wardrobe">Open my wardrobe</Link>
+          </div>
+          <p className="hero-footnote">A little confidence, for every occasion.</p>
+        </div>
+
+        <div className="hero-photos">
+          <img className="hero-photo-main" src={lookFor('modern')} alt="Ivory blazer outfit" />
+          <img className="hero-photo-side" src={lookFor('interview')} alt="Black suit outfit" />
+          <div className="hero-note">
+            <strong>✓ Styled with what you own</strong>
+            <span>Less shopping. More possibilities.</span>
+          </div>
         </div>
       </section>
 
