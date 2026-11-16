@@ -7,7 +7,7 @@ import avatar from '../assets/looks/avatar.jpg'
 // Picks an outfit photo from an event or outfit name (e.g. "Interview", "Classic confidence").
 const RULES = [
   [['kente', 'wedding'], kente],
-  [['interview', 'funeral', 'classic', 'confidence', 'suit', 'formal'], suit],
+  [['interview', 'funeral', 'classic', 'confidence', 'confident', 'suit', 'formal'], suit],
   [['date', 'party', 'dinner', 'birthday', 'after-hours', 'elegance', 'dress', 'evening'], dress],
   [['graduation', 'church', 'casual', 'campus', 'everyday', 'modern', 'professional', 'blazer'], blazer],
 ]

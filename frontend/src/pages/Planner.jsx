@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { outfits, initialPlan } from '../data/planner';
+import { lookFor } from '../data/lookPhotos';
 
 const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -48,9 +49,10 @@ export default function Planner() {
     year: 'numeric',
   });
 
-  function openForm(day) {
-    setForm({ day, event: '', outfit: outfits[0] });
+   function openForm(day, outfit = outfits[0]) {
+    setForm({ day, event: '', outfit });
     setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function savePlan(e) {
@@ -135,9 +137,14 @@ export default function Planner() {
               <span className="day-name">{d.name}</span>
               <span className="day-date">{d.date.getDate()}</span>
               {entry ? (
-                <>
-                  <div className="day-outfit">{entry.outfit}</div>
+                               <>
+                  {lookFor(entry.outfit) ? (
+                    <img className="day-photo" src={lookFor(entry.outfit)} alt={entry.outfit} />
+                  ) : (
+                    <div className="day-outfit">{entry.outfit}</div>
+                  )}
                   <p className="day-event">{entry.event}</p>
+                  <p className="day-outfit-name">{entry.outfit}</p>
                   <button className="link-btn" onClick={() => removeDay(i)}>Remove</button>
                 </>
               ) : (
@@ -148,7 +155,23 @@ export default function Planner() {
               )}
             </div>
           );
-        })}
+              })}
+      </div>
+
+      <h2 className="week-title">Your saved looks</h2>
+      <p className="subtitle">An outfit you love, ready when you need it.</p>
+      <div className="saved-looks">
+        {outfits.slice(0, 3).map((name) => (
+          <div className="saved-look" key={name}>
+            {lookFor(name) && <img src={lookFor(name)} alt={name} />}
+            <div className="saved-look-body">
+              <h3>{name}</h3>
+              <button className="assign-link" onClick={() => openForm(firstEmpty, name)}>
+                Assign to a day →
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

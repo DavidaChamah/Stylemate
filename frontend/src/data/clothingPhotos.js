@@ -9,6 +9,7 @@ import blazer from '../assets/clothing/blazer.jpg'
 import localEdit from '../assets/clothing/local-edit.jpg'
 import belt from '../assets/beauty/belt.jpg'
 import earrings from '../assets/beauty/earrings.jpg'
+import burgundyDress from '../assets/looks/dress.jpg'
 
 // Matches a keyword in the item's name to a photo.
 const KEYWORDS = [
@@ -23,6 +24,8 @@ const KEYWORDS = [
   ['loafer', loafers],
   ['belt', belt],
   ['earring', earrings],
+  ['burgundy', burgundyDress],
+  ['formal shoe', loafers],
   ['blazer', blazer],
 ]
 

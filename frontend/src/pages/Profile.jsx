@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { initialItems } from '../data/wardrobe';
 import { options } from '../data/style';
+import { Link } from 'react-router-dom';
+import { avatarPhoto, lookFor } from '../data/lookPhotos';
 
 const STYLES = ['Casual', 'Smart casual', 'Formal', 'Traditional', 'Streetwear', 'Minimal'];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -31,7 +33,8 @@ export default function Profile() {
   const [profile, setProfile] = useState(() => ({ ...DEFAULTS, ...loadJson('profile', {}) }));
   const [message, setMessage] = useState('');
   const pieces = loadJson('wardrobe', initialItems).length;
-  const looks = loadJson('savedOutfits', []).length;
+  const savedLooks = loadJson('savedOutfits', []);
+  const looks = savedLooks.length;
 
   function update(field, value) {
     setProfile({ ...profile, [field]: value });
@@ -53,8 +56,6 @@ export default function Profile() {
     }
   }
 
-  const initial = profile.name.trim() ? profile.name.trim()[0].toUpperCase() : '?';
-
   return (
     <form onSubmit={save}>
       <div className="page-header">
@@ -71,7 +72,7 @@ export default function Profile() {
 
       <div className="profile">
         <aside className="profile-card">
-          <div className="avatar">{initial}</div>
+                    <img className="avatar-photo" src={avatarPhoto} alt="" />
           <h3>{profile.name.trim() || 'Your name'}</h3>
           <p className="profile-meta">
             {profile.location || 'Add your location'} · {pieces} pieces · {looks} saved looks
@@ -170,8 +171,32 @@ export default function Profile() {
               ))}
             </div>
           </section>
-        </div>
+               </div>
       </div>
+
+      <section className="form-section profile-saved">
+        <div className="section-head">
+          <h2>Saved outfits</h2>
+          <Link className="text-link" to="/saved">View all {looks} looks →</Link>
+        </div>
+        {savedLooks.length === 0 ? (
+          <p className="subtitle">
+            No saved looks yet. <Link className="text-link" to="/style-me">Find a look →</Link>
+          </p>
+        ) : (
+          <div className="saved-looks saved-looks-two">
+            {savedLooks.slice(0, 2).map((s) => (
+              <div className="saved-look" key={s.id}>
+                {lookFor(s.name) && <img src={lookFor(s.name)} alt={s.name} />}
+                <div className="saved-look-body">
+                  <h3>{s.name}</h3>
+                  <Link className="text-link" to="/saved">View look →</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </form>
   );
 }
